@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
-import environ
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,12 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-env = environ.Env()
-environ.Env.read_env()
-SECRET_KEY = env('z^&l!)3rtsrto3ucl97d2io!uspqe%sf1bpe@t61(b&xll81t*')
+
+SECRET_KEY = 'z^&l!)3rtsrto3ucl97d2io!uspqe%sf1bpe@t61(b&xll81t*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=env.bool('DEBUG', default=False)  # Convert to boolean
+DEBUG = True
 
 ALLOWED_HOSTS = ['Vinnita.pythonanywhere.com']
 
@@ -91,10 +89,11 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True),
-    'ENGINE': 'django.db.backends.postgresql',
-        'NAME': BASE_DIR / 'db.postgresql',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
     }
+}
 
 
 
@@ -133,11 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
