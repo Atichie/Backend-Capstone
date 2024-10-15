@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.utils import timezone
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
 
 class BookListCreateView(generics.ListCreateAPIView):
@@ -49,11 +50,11 @@ class CheckOutBookView(APIView):
                 )
                 book.number_of_copies -= 1
                 book.save()
-                return Response({'message': 'Book checked out successfully!'], status=status.HTTP_200_OK)
+                return Response({'message': 'Book checked out successfully!'}, status=status.HTTP_200_OK)
             else:
                 return Response({'message': 'Book checked out successfully!'}, status=status.HTTP_400_BAD_REQUEST)
-            except Book.DoesNotExist:
-                return Response({'error': 'Book not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Book.DoesNotExist:
+            return Response({'error': 'Book not found.'}, status=status.HTTP_404_NOT_FOUND)
 
 class ReturnBookView(APIView):
     permission_classes = [IsAuthenticated]
@@ -72,3 +73,6 @@ class ReturnBookView(APIView):
         except Transaction.DoesNotExist:
             return Response({'error': 'No active transaction found for this book.'}, status=status.HTTP_400_BAD_REQUEST)
 
+class UserProfileRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer

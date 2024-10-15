@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'library',
+<<<<<<< HEAD
     'django_filters',
+=======
+    'django_filters'
+>>>>>>> 37d2bd6530294c9c6c9438dff845d2efd25d435b
 ]
 
 MIDDLEWARE = [
@@ -80,7 +84,7 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
         'DEFAULT_AUTHENTICATION_CLASSES': [
-            'rest_framework.authenticatication.TokenAuthenticatication',
+            'rest_framework.authentication.TokenAuthentication',
         ],
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAuthenticated',

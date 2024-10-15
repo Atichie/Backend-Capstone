@@ -1,15 +1,18 @@
 asgiref==3.8.1
 backports.zoneinfo==0.2.1
 Django==4.2.16
+<<<<<<< HEAD
 django-environ==0.11.2
 django-filter==24.3
 django-utils==0.0.2
+=======
+django-filter==24.3
+>>>>>>> 37d2bd6530294c9c6c9438dff845d2efd25d435b
 djangorestframework==3.15.2
-gunicorn==23.0.0
-packaging==24.1
-pillow==10.4.0
-psycopg2==2.9.9
-psycopg2-binary==2.9.9
 sqlparse==0.5.1
+<<<<<<< HEAD
 typing_extensions==4.12.2
 whitenoise==6.7.0
+=======
+typing-extensions==4.12.2
+>>>>>>> 37d2bd6530294c9c6c9438dff845d2efd25d435b
