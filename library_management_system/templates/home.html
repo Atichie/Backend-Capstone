@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %} <!-- Load the static template tag -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Optional: Link to a CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Library Management System</h1>
+        {% if user.is_authenticated %}
+           <p>Hello, {{ user.username }}! You are logged in.</p>
+           <a href="% url 'logout' %}">Logout</a>
+        {% else %}
+           <p>You are logged in.</p>
+           <a href="{ url 'login' %}">Logout</a>
+        {% endif %}
+        
+    
+    
+    </main>
+    <footer>
+        <p>&copy; 2024 Library Management System</p>
+    </footer>
+</body>
+</html>

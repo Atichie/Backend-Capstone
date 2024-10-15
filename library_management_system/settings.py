@@ -28,7 +28,11 @@ SECRET_KEY = 'z^&l!)3rtsrto3ucl97d2io!uspqe%sf1bpe@t61(b&xll81t*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['Vinnita.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    'Atieno46.pythonanywhere.com',
+    '127.0.0.1',
+    'localhost',
+]
 
 # Application definition
 
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'library',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +65,7 @@ ROOT_URLCONF = 'library_management_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'library_management_system', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,8 +95,15 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Atieno46$Atieno',
+        'USER': 'Atieno46',
+        'PASSWORD': 'dasol@vero',
+        'HOST': 'Atieno46.mysql.pythonanywhere-services.com',
+        'PORT': '',
+        'OPTIONS': {
+            'init_command': 'SET sql_mode="STRICT_ALL_TABLES"',
+        },
     }
 }
 
@@ -132,6 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/home/Atieno46/library_management_system/static'
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/Atieno46/library_management_system/media'
