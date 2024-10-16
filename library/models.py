@@ -7,7 +7,7 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     isbn = models.CharField(max_length=13, unique=True)
     published_date = models.DateField()
-    number_of_copies = models.PositiveIntegerField()
+    number_of_copies = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -23,8 +23,8 @@ class UserProfile(models.Model):
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    checkout_date = models.DateTimeField(auto_now_add=True)
+    checkout_date = models.DateTimeField()
     return_date = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.book.title}"
+        return f"{self.user.username} checked out {self.book.title} on {self.checkout_date}"
