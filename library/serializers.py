@@ -11,7 +11,7 @@ class SignInSerializer(serializers.Serializer):
         user = authenticate(username=username, password=password)
 
         if user is None:
-            raise serializers.ValidationError("Inalid username or password.")
+            raise serializers.ValidationError("Invalid username or password.")
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
