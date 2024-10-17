@@ -28,11 +28,8 @@ SECRET_KEY = 'z^&l!)3rtsrto3ucl97d2io!uspqe%sf1bpe@t61(b&xll81t*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'Atieno46.pythonanywhere.com',
-    '127.0.0.1',
-    'localhost',
-]
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -45,11 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'library',
-<<<<<<< HEAD
     'django_filters',
-=======
-    'django_filters'
->>>>>>> 37d2bd6530294c9c6c9438dff845d2efd25d435b
 ]
 
 MIDDLEWARE = [
@@ -99,15 +92,8 @@ WSGI_APPLICATION = 'library_management_system.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Atieno46$Atieno',
-        'USER': 'Atieno46',
-        'PASSWORD': 'dasol@vero',
-        'HOST': 'Atieno46.mysql.pythonanywhere-services.com',
-        'PORT': '',
-        'OPTIONS': {
-            'init_command': 'SET sql_mode="STRICT_ALL_TABLES"',
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
 
