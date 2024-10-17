@@ -6,12 +6,13 @@ class SignInSerializer(serializers.Serializer):
     def validate(self, attrs):
         """Check that the username and password are correct."""
         username = serializers.CharField(required=True)
+        email = serializers.CharField(required=True)
         password = serializers.CharField(required=True, min_length=6)
 
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=username, email=email, password=password)
 
         if user is None:
-            raise serializers.ValidationError("Invalid username or password.")
+            raise serializers.ValidationError("Invalid username, email or password.")
 
 
 class UserProfileSerializer(serializers.ModelSerializer):

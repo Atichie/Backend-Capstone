@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here
 from rest_framework import generics
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views import View
 from .models import Book, UserProfile, Transaction
 from .serializers import BookSerializer, UserProfileSerializer, TransactionSerializer
@@ -17,14 +17,17 @@ from rest_framework.views import APIView
 from django.utils import timezone
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from django.http import JsonResponse
+from django.contrib import messages
+
 
 class SignInView(APIView):
     def post(self, request):
         serializer = SignInSerializer(data=request.data)
         if serializer.is_valid():
             username = serializer.validated_data['username']
+            email = serializer.validated_data['email']
             password = serializer.validated_data['password']
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, email=email, password=password)
             if user is not None:
 
                 login(request, user)
@@ -34,15 +37,15 @@ class SignInView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 
-        if not username or not password:
-            return JsonResponse({'error': 'Username and password are required.'}, status=400)
+        if not username or not email or not password:
+            return JsonResponse({'error': 'Username, email and password are required.'}, status=400)
            
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, email=email, password=password)
         if user is not None:
             login(request, user)
             return JsonResponse({'success': 'Logged in successfully!'})
         else:
-            return JsonResponse({'error': 'Invalid username or password.'}, status=400)
+            return JsonResponse({'error': 'Invalid username, email or password.'}, status=400)
 
 
 
